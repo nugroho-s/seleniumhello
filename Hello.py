@@ -3,10 +3,14 @@ from selenium.webdriver.common.keys import Keys
 import sys
 
 assert len(sys.argv) == 2
-if sys.argv[1] == "64":
-    driver = webdriver.Chrome("chromedriver_linux64/chromedriver")
-else:
-    driver = webdriver.Chrome("chromedriver_linux32/chromedriver")
+# if sys.argv[1] == "64":
+#     driver = webdriver.Chrome("chromedriver_linux64/chromedriver")
+# else:
+#     driver = webdriver.Chrome("chromedriver_linux32/chromedriver")
+
+capability = webdriver.DesiredCapabilities.CHROME
+
+driver = webdriver.Remote("http://localhost:5555/wd/hub",capability)
 driver.get("http://www.python.org")
 assert "Python" in driver.title
 elem = driver.find_element_by_name("q")
